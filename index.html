@@ -222,59 +222,53 @@
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-cream-200 pb-6">
                     <div>
                         <h1 class="text-3xl sm:text-4xl font-extrabold text-forest-900 tracking-tight">San Bartolome Store Directory</h1>
-                        <p class="text-gray-600 mt-2 text-sm sm:text-base">Explore registered businesses, operational details, and store profiles across Quirino Highway & Holy Cross.</p>
-                    </div>
-                    
-                    <!-- Search Input -->
-                    <div class="relative w-full md:w-72">
-                        <input type="text" id="store-search" oninput="handleSearch()" placeholder="Search store name or product..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-cream-300 focus:outline-none focus:ring-2 focus:ring-forest-700 text-sm">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
-                    </div>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">Explore registered businesses, operational details, and store profiles across Quirino Highway, Katipunan Ave, Holy Cross & P. Dela Cruz St.</p>
                 </div>
-
-                <!-- Category Filters (Pills) -->
-                <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 custom-scrollbar">
-                    <button onclick="filterByCategory('All')" class="filter-pill active whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition border border-cream-300 hover:border-forest-700">
-                        All Stores
-                    </button>
-                    <button onclick="filterByCategory('Department Store')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
-                        <i class="fa-solid fa-bag-shopping mr-1.5 text-forest-700"></i> Department Store
-                    </button>
-                    <button onclick="filterByCategory('Pharmacy')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
-                        <i class="fa-solid fa-pills mr-1.5 text-forest-700"></i> Pharmacy
-                    </button>
-                    <button onclick="filterByCategory('Optical Store')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
-                        <i class="fa-solid fa-glasses mr-1.5 text-forest-700"></i> Optical Store
-                    </button>
-                    <button onclick="filterByCategory('Restaurants / Cafes')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
-                        <i class="fa-solid fa-utensils mr-1.5 text-forest-700"></i> Fast Food & Dining
-                    </button>
-                    <button onclick="filterByCategory('Pawnshop')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
-                        <i class="fa-solid fa-hand-holding-dollar mr-1.5 text-forest-700"></i> Pawnshop & Financial
-                    </button>
-                    <button onclick="filterByCategory('General Merchandise')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
-                        <i class="fa-solid fa-boxes-stacked mr-1.5 text-forest-700"></i> General Merchandise
-                    </button>
-                    <button onclick="filterByCategory('Community Store')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
-                        <i class="fa-solid fa-shop mr-1.5 text-forest-700"></i> Community Store
-                    </button>
-                </div>
-
-                <!-- Stores Cards Grid -->
-                <div id="store-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Cards will be populated dynamically via JavaScript -->
-                </div>
-
-                <!-- Empty State Message -->
-                <div id="no-results" class="hidden text-center py-16">
-                    <div class="w-16 h-16 bg-cream-200 text-gray-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
-                        <i class="fa-solid fa-store-slash"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-700">No stores found</h3>
-                    <p class="text-gray-500 text-sm mt-1">Try adjusting your search term or category filter.</p>
+                
+                <!-- Search Input -->
+                <div class="relative w-full md:w-72">
+                    <input type="text" id="store-search" oninput="handleSearch()" placeholder="Search store name, product, or street..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-cream-300 focus:outline-none focus:ring-2 focus:ring-forest-700 text-sm">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
                 </div>
             </div>
-        </section>
+
+            <!-- Category Filters (Pills) -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 custom-scrollbar">
+                <button onclick="filterByCategory('All')" class="filter-pill active whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition border border-cream-300 hover:border-forest-700">
+                    All Stores
+                </button>
+                <button onclick="filterByCategory('Café & Food')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
+                    <i class="fa-solid fa-mug-hot mr-1.5 text-forest-700"></i> Cafés & Restaurants
+                </button>
+                <button onclick="filterByCategory('Pharmacy')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
+                    <i class="fa-solid fa-pills mr-1.5 text-forest-700"></i> Pharmacies & Care
+                </button>
+                <button onclick="filterByCategory('Grocery')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
+                    <i class="fa-solid fa-cart-shopping mr-1.5 text-forest-700"></i> Grocery & Convenience
+                </button>
+                <button onclick="filterByCategory('Bakery & Specialty')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
+                    <i class="fa-solid fa-cake-candles mr-1.5 text-forest-700"></i> Bakery & Specialty
+                </button>
+                <button onclick="filterByCategory('General Merchandise')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
+                    <i class="fa-solid fa-store mr-1.5 text-forest-700"></i> Department & Merchandise
+                </button>
+            </div>
+
+            <!-- Stores Cards Grid -->
+            <div id="store-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cards will be populated dynamically via JavaScript -->
+            </div>
+
+            <!-- Empty State Message -->
+            <div id="no-results" class="hidden text-center py-16">
+                <div class="w-16 h-16 bg-cream-200 text-gray-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fa-solid fa-store-slash"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-700">No stores found</h3>
+                <p class="text-gray-500 text-sm mt-1">Try adjusting your search term or category filter.</p>
+            </div>
+        </div>
+    </section>
 
         <!-- ================= PAGE 3: OPERATING HOURS ================= -->
         <section id="page-hours" class="page-section">
@@ -636,23 +630,196 @@
 
     <!-- JAVASCRIPT LOGIC & STORE DATA -->
     <script>
-        // STORE DATASET (Actual establishments in Brgy. San Bartolome)
+        // COMPREHENSIVE STORE DATASET (All San Bartolome Establishments)
         const storesData = [
+            // --- CAFES & RESTAURANTS / FOOD ---
             {
-                id: 'sm-store',
-                name: 'SM Store – SM City Novaliches',
-                category: 'Department Store',
-                address: 'SM City Novaliches, Quirino Highway, Brgy. San Bartolome, Quezon City',
+                id: 'coffee-816',
+                name: '816 Coffee & Co. - QC',
+                category: 'Café & Food',
+                address: 'Blk 1 Lot 1 Katipunan Ave, Goodwill Homes 1, San Bartolome, Novaliches, Quezon City',
+                opening: '1:00 PM',
+                closing: '10:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Espresso beverages, iced coffee, pastries, handcrafted drinks, and light snacks.',
+                icon: 'fa-mug-hot',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=816+Coffee+%26+Co.+Goodwill+Homes+1+San+Bartolome+Quezon+City',
+                atmosphere: {
+                    display: 'Modern espresso bar counter featuring visible coffee beans and baked goods display.',
+                    design: 'Cozy café layout with indoor tables, warm ambient seating, and relaxing study nooks.',
+                    appearance: 'Relaxing aesthetic, warm LED lighting, clean interiors, and air-conditioned environment.'
+                }
+            },
+            {
+                id: 'descarts-cafe',
+                name: 'Descarts Cafe',
+                category: 'Café & Food',
+                address: '3rd Floor, GD Plaza, 717 Quirino Hwy, San Bartolome, Novaliches, Quezon City',
+                opening: '10:00 AM',
+                closing: '8:00 PM',
+                days: 'Mon–Sat',
+                products: 'Specialty coffee, frappes, tea, pasta, and light meals.',
+                icon: 'fa-cup-taster',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Descarts+Cafe+GD+Plaza+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Charming chalkboard menus and elevated pastry showcase at the counter.',
+                    design: 'Compact third-floor café space with glass windows overlooking Quirino Highway.',
+                    appearance: 'Clean, quiet, and relaxing ambiance suitable for conversation and coffee.'
+                }
+            },
+            {
+                id: 'wealth-tea',
+                name: 'Wealth Tea',
+                category: 'Café & Food',
+                address: '67 California Village, Katipunan Avenue, SB Diversion Road, Novaliches, Quezon City',
+                opening: '1:00 PM',
+                closing: '10:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Bobba milk teas, fruit teas, slushies, and quick finger foods. Contact: 0926 240 2921.',
+                icon: 'fa-glass-water',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Wealth+Tea+California+Village+Katipunan+Avenue+San+Bartolome',
+                atmosphere: {
+                    display: 'Colorful beverage menu wall displays with customized tea topping options.',
+                    design: 'Casual milk tea shop setup with comfortable seating for group hangouts.',
+                    appearance: 'Brightly lit, cheerful vibe with cool indoor temperature.'
+                }
+            },
+            {
+                id: 'jollibee-nova-square',
+                name: 'Jollibee – Nova Square',
+                category: 'Café & Food',
+                address: 'Ground Floor, Nova Square, Quirino Highway corner P. Dela Cruz St, San Bartolome, Novaliches, QC',
+                opening: '24 Hours',
+                closing: '24 Hours',
+                days: 'Daily (Mon–Sun)',
+                products: 'Chickenjoy, Jolly Spaghetti, Yumburgers, Peach Mango Pie, and beverages.',
+                icon: 'fa-utensils',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Jollibee+Nova+Square+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Overhead digital ordering displays and takeaway pickup counters.',
+                    design: 'Spacious fast-food dining hall with booth seating and high-capacity traffic corridors.',
+                    appearance: 'Family-friendly environment, bright interior lighting, and air-conditioned dining.'
+                }
+            },
+            {
+                id: 'kfc-novaliches',
+                name: 'KFC – SM City Novaliches',
+                category: 'Café & Food',
+                address: 'Ground Floor, SM City Novaliches, Quirino Highway, Brgy. San Bartolome, Quezon City',
+                opening: '9:00 AM',
+                closing: '8:30 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Original Recipe fried chicken, Zinger burgers, rice meals, and fixins.',
+                icon: 'fa-burger',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=KFC+SM+City+Novaliches+San+Bartolome+Quezon+City',
+                atmosphere: {
+                    display: 'Promotional combos illuminated above ordering stations.',
+                    design: 'Open dining layout with comfortable seating booths near mall access.',
+                    appearance: 'Clean fast-food setup with high-turnover service.'
+                }
+            },
+            {
+                id: 'momocha-a',
+                name: 'Momocha-a',
+                category: 'Café & Food',
+                address: '#1 Holy Cross Road, Novaliches, Quezon City',
                 opening: '10:00 AM',
                 closing: '9:00 PM',
                 days: 'Daily (Mon–Sun)',
-                products: 'Clothing, fashion accessories, home products, shoes, and everyday items.',
-                icon: 'fa-bag-shopping',
-                mapUrl: 'https://www.google.com/maps/search/?api=1&query=SM+Store+SM+City+Novaliches+San+Bartolome+Quezon+City',
+                products: 'Milk tea, fruit teas, pearl drinks, and quick snacks.',
+                icon: 'fa-whiskey-glass',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Momocha-a+Holy+Cross+Road+Novaliches+Quezon+City',
                 atmosphere: {
-                    display: 'Merchandise is neatly organized into visual departments (Apparel, Home, Accessories) with clear signage.',
-                    design: 'Wide central aisles facilitate smooth customer movement with accessible checkout counters on every floor.',
-                    appearance: 'Very clean, brightly lit with ambient spotlights, and fully air-conditioned.'
+                    display: 'Countertop menu boards showcasing seasonal milk tea flavors.',
+                    design: 'Quick service counter with cozy wait area for takeout and walk-ins.',
+                    appearance: 'Neat neighborhood beverage spot with friendly ambiance.'
+                }
+            },
+            {
+                id: 'garahe-kuya-jo',
+                name: 'Garahe ni Kuya JO',
+                category: 'Café & Food',
+                address: '18 Rockville Avenue, Rockville Subdivision, San Bartolome, Novaliches, Quezon City',
+                opening: '11:00 AM',
+                closing: '9:30 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Sizzling meals, grilled dishes, rice plates, and local comfort food.',
+                icon: 'fa-fire-burner',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Garahe+ni+Kuya+JO+Rockville+Subdivision+San+Bartolome',
+                atmosphere: {
+                    display: 'Open-air kitchen grill setup where guests can view meal preparation.',
+                    design: 'Garage-style casual alfresco dining layout with spacious rustic tables.',
+                    appearance: 'Welcoming neighborhood vibe with breezy open-air dining.'
+                }
+            },
+            {
+                id: 'dunkin-nova-square',
+                name: 'Dunkin\' – Holy Cross / Nova Square',
+                category: 'Café & Food',
+                address: 'Nova Square area, Quirino Highway, San Bartolome, Novaliches, Quezon City',
+                opening: '6:00 AM',
+                closing: '10:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Donuts, Munchkins, brewed coffee, iced coffee, and savory sandwiches.',
+                icon: 'fa-donut',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Dunkin+Nova+Square+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Glass bakery display case showcasing fresh daily donut varieties.',
+                    design: 'Convenient grab-and-go counter with small café seating area.',
+                    appearance: 'Bright orange and pink branding with clean counter space.'
+                }
+            },
+            {
+                id: 'mang-boy-lugawan',
+                name: 'Mang Boy Lugawan',
+                category: 'Café & Food',
+                address: '50 King George Street, Kingspoint / San Bartolome area, Novaliches, Quezon City',
+                opening: '6:00 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Hot lugaw (rice porridge), tokwa\'t baboy, hard-boiled eggs, and local snacks.',
+                icon: 'fa-bowl-food',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Mang+Boy+Lugawan+King+George+Street+Novaliches',
+                atmosphere: {
+                    display: 'Pot displays of warm rice porridge with condiment counter for toppings.',
+                    design: 'Casual open-front diner with bench seating for quick neighborhood meals.',
+                    appearance: 'Simple, clean, and authentic local food eatery.'
+                }
+            },
+            {
+                id: 'cafe-de-franz',
+                name: 'Cafe de Franz',
+                category: 'Café & Food',
+                address: 'Katipunan Avenue, Goodwill Homes 1 area, San Bartolome, Novaliches, Quezon City',
+                opening: '12:00 PM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Iced coffee, blended drinks, teas, and savory light bites.',
+                icon: 'fa-coffee',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Cafe+de+Franz+Katipunan+Avenue+Goodwill+Homes+Quezon+City',
+                atmosphere: {
+                    display: 'Minimalist menu board displaying specialty beverages and pastries.',
+                    design: 'Relaxed neighborhood coffee shop layout with comfortable seating.',
+                    appearance: 'Cozy lighting and peaceful ambiance.'
+                }
+            },
+
+            // --- PHARMACY & HEALTHCARE ---
+            {
+                id: 'mercury-drug-nova',
+                name: 'Mercury Drug – Nova Square',
+                category: 'Pharmacy',
+                address: 'Nova Square, Quirino Highway corner P. Dela Cruz St, San Bartolome, Novaliches, QC',
+                opening: '24 Hours',
+                closing: '24 Hours',
+                days: 'Daily (Mon–Sun)',
+                products: 'Prescription drugs, over-the-counter medicine, medical supplies, and personal care.',
+                icon: 'fa-prescription',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Mercury+Drug+Nova+Square+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Clear counter-based medicine sections and categorized self-service personal aisles.',
+                    design: 'Structured pharmacist queue lines with quick service window counters.',
+                    appearance: 'Clean, well-lit, air-conditioned, and highly organized pharmacy.'
                 }
             },
             {
@@ -663,19 +830,53 @@
                 opening: '10:00 AM',
                 closing: '9:00 PM',
                 days: 'Daily (Mon–Sun)',
-                products: 'Medicines, skincare, beauty cosmetics, personal hygiene essentials, and health supplements.',
+                products: 'Medicines, skincare, cosmetics, vitamins, and personal hygiene essentials.',
                 icon: 'fa-pills',
                 mapUrl: 'https://www.google.com/maps/search/?api=1&query=Watsons+SM+City+Novaliches+San+Bartolome+Quezon+City',
                 atmosphere: {
-                    display: 'Categorized shelves for pharmacy prescriptions, beauty brands, and personal care items.',
-                    design: 'Compact gondola shelf layout designed for high product density with guided checkout queues.',
+                    display: 'Categorized shelves for prescription drugs, beauty brands, and health supplements.',
+                    design: 'Gondola shelf layout designed for easy browsing and guided checkout queues.',
                     appearance: 'Vibrant white lighting, spotless floors, cool indoor temperature.'
+                }
+            },
+            {
+                id: 'tgp-goodwill',
+                name: 'The Generics Pharmacy – Goodwill Homes 1',
+                category: 'Pharmacy',
+                address: 'Katipunan Avenue, Goodwill Homes 1, San Bartolome, Novaliches, Quezon City',
+                opening: '7:00 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Affordable generic medicines, vitamins, supplements, and basic health supplies.',
+                icon: 'fa-capsules',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=The+Generics+Pharmacy+Goodwill+Homes+1+Katipunan+Ave+San+Bartolome',
+                atmosphere: {
+                    display: 'Organized prescription medicine shelves behind a clear glass counter.',
+                    design: 'Simple counter-service pharmacy layout for fast neighborhood transactions.',
+                    appearance: 'Clean, accessible, and practical healthcare setup.'
+                }
+            },
+            {
+                id: 'tgp-brgy-hall',
+                name: 'The Generics Pharmacy – Near Brgy. Hall',
+                category: 'Pharmacy',
+                address: 'Near Barangay San Bartolome Hall, Novaliches, Quezon City',
+                opening: '7:00 AM',
+                closing: '8:30 PM',
+                days: 'Mon–Sat',
+                products: 'Generic pharmaceutical drugs, medical supplies, and health supplements.',
+                icon: 'fa-notes-medical',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=The+Generics+Pharmacy+Near+Barangay+Hall+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Clear price labels and medicine list displays on counter glass.',
+                    design: 'Compact store footprint with walk-up service window.',
+                    appearance: 'Neat, modest, and conveniently located.'
                 }
             },
             {
                 id: 'eo-optical',
                 name: 'EO Executive Optical – SM Novaliches',
-                category: 'Optical Store',
+                category: 'Pharmacy',
                 address: 'Ground Floor, SM City Novaliches, Quirino Highway, Brgy. San Bartolome, Quezon City',
                 opening: '10:00 AM',
                 closing: '9:00 PM',
@@ -684,77 +885,287 @@
                 icon: 'fa-glasses',
                 mapUrl: 'https://www.google.com/maps/search/?api=1&query=EO+Executive+Optical+SM+City+Novaliches',
                 atmosphere: {
-                    display: 'Illuminated glass display cabinets presenting premium spectacle frames and sunglasses.',
-                    design: 'Open consultation area with dedicated examination rooms in the back section.',
-                    appearance: 'Sleek modern design, quiet atmosphere with focused mirror lighting.'
+                    display: 'Illuminated glass display cabinets presenting eyeglass frames.',
+                    design: 'Open consultation desk with optical refraction room.',
+                    appearance: 'Sleek, modern design with quiet atmosphere and mirror stations.'
                 }
             },
             {
-                id: 'kfc-novaliches',
-                name: 'KFC – SM City Novaliches',
-                category: 'Restaurants / Cafes',
-                address: 'Ground Floor, SM City Novaliches, Quirino Highway, Brgy. San Bartolome, Quezon City',
-                opening: '9:00 AM',
-                closing: '8:30 PM',
-                days: 'Daily (Mon–Sun)',
-                products: 'Fried chicken meals, rice bowls, Zinger burgers, sides, and soft drinks.',
-                icon: 'fa-utensils',
-                mapUrl: 'https://www.google.com/maps/search/?api=1&query=KFC+SM+City+Novaliches+San+Bartolome+Quezon+City',
-                atmosphere: {
-                    display: 'Digital menu boards placed directly above ordering counters showing daily combos.',
-                    design: 'Fast-food dining layout featuring booth seating, dining tables, and quick counter service.',
-                    appearance: 'Clean dining area, warm lighting, and active quick-service environment.'
-                }
-            },
-            {
-                id: 'villarica-holycross',
-                name: 'Villarica Pawnshop – Holy Cross',
-                category: 'Pawnshop',
-                address: 'Novaliches Holy Cross, Brgy. San Bartolome, Quezon City',
+                id: 'villarica-pawnshop-684',
+                name: 'Villarica Pawnshop – Quirino Hwy',
+                category: 'Pharmacy',
+                address: '684 Quirino Highway, San Bartolome, Novaliches, Quezon City',
                 opening: '8:00 AM',
                 closing: '6:00 PM',
                 days: 'Mon–Fri',
-                products: 'Pawn transactions, jewelry collateral appraisal, and financial remittance services.',
+                products: 'Pawn transactions, jewelry appraisal, and money remittance services.',
                 icon: 'fa-hand-holding-dollar',
-                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Villarica+Pawnshop+Holy+Cross+San+Bartolome+Novaliches',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Villarica+Pawnshop+684+Quirino+Highway+San+Bartolome',
                 atmosphere: {
-                    display: 'Glass window counters showing financial transaction services and rates.',
-                    design: 'Secured transaction counter with glass barrier and customer waiting seats.',
-                    appearance: 'Orderly, well-lit customer service space prioritizing safety and clarity.'
+                    display: 'Secured glass counter displaying transaction rates and policies.',
+                    design: 'Customer service bench area with teller windows.',
+                    appearance: 'Orderly, bright, and secure environment.'
+                }
+            },
+
+            // --- GROCERY & CONVENIENCE STORES ---
+            {
+                id: 'dali-holy-cross',
+                name: 'DALI Everyday Grocery – Holy Cross',
+                category: 'Grocery',
+                address: 'P. Dela Cruz St, San Bartolome, Novaliches, Quezon City, Metro Manila',
+                opening: '6:30 AM',
+                closing: '10:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Discounted groceries, dairy, frozen goods, snacks, beverages, and cleaning products.',
+                icon: 'fa-basket-shopping',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=DALI+Everyday+Grocery+P.+dela+Cruz+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Hard-discount box store layout with items displayed directly in open shipping boxes.',
+                    design: 'Wide straight aisles facilitating fast cart navigation and quick checkout lanes.',
+                    appearance: 'Bright white lighting, clean floors, simple and highly efficient shopping space.'
+                }
+            },
+            {
+                id: 'eomma-korean-mart',
+                name: 'Eomma Korean Mart – San Bartolome',
+                category: 'Grocery',
+                address: '697 Quirino Highway, San Bartolome area, Novaliches, Quezon City',
+                opening: '8:30 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Imported Korean ramen, ice cream, kimchi, snacks, beverages, and ingredients.',
+                icon: 'fa-bowl-rice',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Eomma+Korean+Mart+697+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Colorfully arranged shelves featuring Korean snacks, ramen, and freezer units.',
+                    design: 'Compact specialty mini-mart layout optimized for easy browsing.',
+                    appearance: 'Clean, modern, air-conditioned, and vibrant grocery environment.'
+                }
+            },
+            {
+                id: 'seven-eleven-160',
+                name: '7-Eleven – San Bartolome #160',
+                category: 'Grocery',
+                address: 'P. Dela Cruz St, San Bartolome, Novaliches, Quezon City, 1116 Metro Manila',
+                opening: '4:55 AM',
+                closing: '11:55 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Ready-to-eat meals, Big Gulp, City Blends coffee, snacks, and daily essentials.',
+                icon: 'fa-store',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=7-Eleven+P.+Dela+Cruz+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Standardized 7-Eleven product bays, beverage coolers, and food warmers.',
+                    design: 'Streamlined convenience store layout with front cashier and coffee bar.',
+                    appearance: 'Bright fluorescent lighting, cool air conditioning, and quick service.'
+                }
+            },
+            {
+                id: 'seven-eleven-holy-cross',
+                name: '7-Eleven – Holy Cross Road',
+                category: 'Grocery',
+                address: 'Holy Cross Road, San Bartolome, Novaliches, Quezon City',
+                opening: '24 Hours',
+                closing: '24 Hours',
+                days: 'Daily (Mon–Sun)',
+                products: 'Convenience foods, snacks, beverages, e-wallet cash-in, and hygiene items.',
+                icon: 'fa-store',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=7-Eleven+Holy+Cross+Road+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Neatly organized snack shelves and chilled drink refrigerators.',
+                    design: 'Efficient walk-through aisle system leading directly to checkout.',
+                    appearance: 'Air-conditioned, brightly lit, and open round-the-clock.'
+                }
+            },
+            {
+                id: 'botoys-convenience',
+                name: 'BOTOYS Convenience Store',
+                category: 'Grocery',
+                address: '10 Rockville Avenue, Rockville Subdivision, San Bartolome, Novaliches, QC',
+                opening: '6:30 AM',
+                closing: '6:30 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Neighborhood snacks, cold beverages, canned goods, and everyday household items.',
+                icon: 'fa-shop',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=BOTOYS+Convenience+Store+Rockville+Subdivision+San+Bartolome',
+                atmosphere: {
+                    display: 'Simple shelf display of neighborhood snacks and household goods.',
+                    design: 'Accessible suburban convenience shop setup.',
+                    appearance: 'Clean, friendly, and practical residential store.'
+                }
+            },
+            {
+                id: 'srs-community-store',
+                name: 'SRS Community Store – SB Road',
+                category: 'Grocery',
+                address: 'Unit 4, Marcelester Center, California Village, Katipunan Ave, San Bartolome, QC',
+                opening: '7:00 AM',
+                closing: '10:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Community groceries, fresh staples, canned foods, snacks, and toiletries.',
+                icon: 'fa-cart-flatbed',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=SRS+Community+Store+Marcelester+Center+California+Village+San+Bartolome',
+                atmosphere: {
+                    display: 'Grid-style grocery shelves grouped by pantry essentials and snacks.',
+                    design: 'Accessible mini-supermarket layout with central checkout lane.',
+                    appearance: 'Neat, bright, and comfortable neighborhood shopping environment.'
+                }
+            },
+            {
+                id: 'ever-supermarket-quirino',
+                name: 'Ever Supermarket – Quirino Hwy',
+                category: 'Grocery',
+                address: 'Quirino Highway, San Bartolome, Novaliches, Quezon City',
+                opening: '8:00 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Fresh produce, meats, wholesale groceries, toiletries, and appliances.',
+                icon: 'fa-cart-shopping',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Ever+Supermarket+Quirino+Highway+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Full supermarket layout with fresh food racks and packaged grocery aisles.',
+                    design: 'Multiple checkout lanes with wide cart-friendly customer pathways.',
+                    appearance: 'Spacious, well-lit, and bustling supermarket setting.'
+                }
+            },
+
+            // --- BAKERY & SPECIALTY GOODS ---
+            {
+                id: 'simply-bread',
+                name: 'Simply Bread – Near Brgy. Hall',
+                category: 'Bakery & Specialty',
+                address: 'Near Barangay San Bartolome Hall, Novaliches, Quezon City',
+                opening: '6:00 AM',
+                closing: '8:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Freshly baked pandesal, loaf bread, filled buns, and local pastries.',
+                icon: 'fa-wheat-awn',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Simply+Bread+Near+Barangay+Hall+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Glass bakery display case presenting fresh warm breads.',
+                    design: 'Walk-up bakery counter for fast morning purchases.',
+                    appearance: 'Clean bakery setup filled with fresh bread aroma.'
+                }
+            },
+            {
+                id: 'red-ribbon-quirino',
+                name: 'Red Ribbon Bakeshop',
+                category: 'Bakery & Specialty',
+                address: 'Quirino Highway area, San Bartolome, Novaliches, Quezon City',
+                opening: '8:00 AM',
+                closing: '8:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Celebration cakes, Black Forest, rolls, empanadas, and pastries.',
+                icon: 'fa-cake-candles',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Red+Ribbon+Bakeshop+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Refrigerated glass display cases highlighting custom specialty cakes.',
+                    design: 'Clean retail counter with dedicated cake pickup area.',
+                    appearance: 'Brightly lit, welcoming, and signature Red Ribbon bakeshop interior.'
+                }
+            },
+            {
+                id: 'goldilocks-quirino',
+                name: 'Goldilocks Bakeshop',
+                category: 'Bakery & Specialty',
+                address: 'Quirino Highway area, San Bartolome, Novaliches, Quezon City',
+                opening: '8:00 AM',
+                closing: '8:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Polvoron, greeting cakes, native delicacies, breads, and meals.',
+                icon: 'fa-cookie',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Goldilocks+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Neat displays of boxed native sweets and chilled cake displays.',
+                    design: 'Dual-section setup for bakery takeaway and quick Filipino meals.',
+                    appearance: 'Clean yellow and blue trademark look with cheerful lighting.'
+                }
+            },
+            {
+                id: 'happy-hans-milktea',
+                name: 'Happy Hans Milktea Supplies',
+                category: 'Bakery & Specialty',
+                address: '29 Ramos Compound, Holy Cross, San Bartolome, Novaliches, Quezon City',
+                opening: '9:00 AM (Wed 8 AM)',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Milk tea ingredients, syrups, boba tapioca pearls, cups, and straws.',
+                icon: 'fa-box-open',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Happy+Hans+Milktea+Supplies+Ramos+Compound+Holy+Cross+San+Bartolome',
+                atmosphere: {
+                    display: 'Wholesale product shelves showcasing milk tea powders and packaging.',
+                    design: 'Retail supply store setup with counter billing space.',
+                    appearance: 'Organized specialty store catering to local food entrepreneurs.'
+                }
+            },
+
+            // --- GENERAL MERCHANDISE & SHOPS ---
+            {
+                id: 'sm-store',
+                name: 'SM Store – SM City Novaliches',
+                category: 'General Merchandise',
+                address: 'SM City Novaliches, Quirino Highway, Brgy. San Bartolome, Quezon City',
+                opening: '10:00 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Clothing, fashion accessories, home products, shoes, and everyday items.',
+                icon: 'fa-bag-shopping',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=SM+Store+SM+City+Novaliches+San+Bartolome+Quezon+City',
+                atmosphere: {
+                    display: 'Merchandise organized into visual departments (Apparel, Home, Accessories).',
+                    design: 'Wide central aisles with accessible cashier counters on all floors.',
+                    appearance: 'Very clean, brightly lit with spotlights, and fully air-conditioned.'
                 }
             },
             {
                 id: 'maklim-merchandise',
                 name: 'Maklim General Merchandise',
                 category: 'General Merchandise',
-                address: 'San Bartolome, Novaliches, Quezon City',
-                opening: '7:30 AM',
-                closing: '5:30 PM',
-                days: 'Mon–Sat (Sun: 8 AM–3 PM)',
-                products: 'Household goods, plasticware, general hardware, and daily home necessities.',
+                address: 'Lot 21, Goodwill Homes 1, Block 3, Katipunan Ave, San Bartolome, Novaliches, QC',
+                opening: '7:30 AM (Sun 8 AM)',
+                closing: '5:30 PM (Sun 3 PM)',
+                days: 'Mon–Sun',
+                products: 'Household items, hardware goods, plasticware, and everyday home products.',
                 icon: 'fa-boxes-stacked',
-                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Maklim+General+Merchandise+San+Bartolome+Novaliches',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Maklim+General+Merchandise+Goodwill+Homes+1+Katipunan+Ave',
                 atmosphere: {
-                    display: 'Stacked product displays showcasing wide inventory of home merchandise.',
-                    design: 'High-density store layout utilizing vertical shelving to maximize stock space.',
-                    appearance: 'Busy neighborhood shop with open-front street access and quick service.'
+                    display: 'High-density shelf displays maximizing product availability.',
+                    design: 'Traditional general merchandise layout with guided service counters.',
+                    appearance: 'Practical neighborhood store with complete household stock.'
                 }
             },
             {
-                id: 'srs-community',
-                name: 'SRS Community Store – SB Road',
-                category: 'Community Store',
-                address: 'San Bartolome Road, Novaliches, Quezon City',
-                opening: '7:00 AM',
-                closing: '10:00 PM',
-                days: 'Daily (Mon–Sun)',
-                products: 'Community grocery items, pantry staples, toiletries, and snacks.',
-                icon: 'fa-shop',
-                mapUrl: 'https://www.google.com/maps/search/?api=1&query=SRS+Community+Store+San+Bartolome+Novaliches',
+                id: 'kingchie-merchandise',
+                name: 'Kingchie General Merchandise',
+                category: 'General Merchandise',
+                address: 'Near Barangay San Bartolome Hall, Novaliches, Quezon City',
+                opening: '7:30 AM',
+                closing: '6:00 PM',
+                days: 'Mon–Sat',
+                products: 'School supplies, party needs, plastic packaging, and home goods.',
+                icon: 'fa-boxes-packing',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Kingchie+General+Merchandise+San+Bartolome+Novaliches',
                 atmosphere: {
-                    display: 'Neat grocery shelves sorted by snack foods, canned goods, and cleaning products.',
-                    design: 'Self-service mini grocery layout with wide aisles for quick neighbor shopping.',
-                    appearance: 'Well-lit neighborhood grocery with cool air and clean flooring.'
+                    display: 'Stacked racks featuring daily home items and supplies.',
+                    design: 'Accessible neighborhood shop layout for fast walk-in buying.',
+                    appearance: 'Neat, practical, and community-focused store.'
+                }
+            },
+            {
+                id: 'maris-flower-shop',
+                name: 'Mari\'s Flower Shop',
+                category: 'General Merchandise',
+                address: 'Pablo Dela Cruz Street, San Bartolome, Novaliches, Quezon City',
+                opening: '7:00 AM',
+                closing: '7:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Fresh flower arrangements, bouquets, event floral decor, and plants.',
+                icon: 'fa-seedling',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Mari%27s+Flower+Shop+Pablo+Dela+Cruz+Street+San+Bartolome',
+                atmosphere: {
+                    display: 'Vibrant buckets of fresh flowers arranged by color and variety.',
+                    design: 'Open floral arrangement workstation where customers can watch custom bouquets crafted.',
+                    appearance: 'Aromatic, colorful, and naturally beautiful shop space.'
                 }
             }
         ];
@@ -769,31 +1180,24 @@
 
         // Navigation Tab Switcher
         function navigateTo(pageId) {
-            // Hide all pages
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active');
             });
-            // Remove active style from tabs
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
 
-            // Show selected page
             const targetPage = document.getElementById(`page-${pageId}`);
             if (targetPage) {
                 targetPage.classList.add('active');
             }
 
-            // Highlight nav button
             const targetNav = document.getElementById(`nav-${pageId}`);
             if (targetNav) {
                 targetNav.classList.add('active');
             }
 
-            // Close mobile menu if open
             document.getElementById('mobile-menu').classList.add('hidden');
-
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -807,9 +1211,14 @@
         function filterByCategory(category) {
             currentActiveCategory = category;
 
-            // Update Filter Pills styling
             document.querySelectorAll('.filter-pill').forEach(btn => {
-                if (btn.textContent.includes(category) || (category === 'All' && btn.textContent.includes('All Stores'))) {
+                const btnText = btn.textContent.trim();
+                if ((category === 'All' && btnText.includes('All Stores')) ||
+                    (category === 'Café & Food' && btnText.includes('Cafés')) ||
+                    (category === 'Pharmacy' && btnText.includes('Pharmacies')) ||
+                    (category === 'Grocery' && btnText.includes('Grocery')) ||
+                    (category === 'Bakery & Specialty' && btnText.includes('Bakery')) ||
+                    (category === 'General Merchandise' && btnText.includes('Department'))) {
                     btn.classList.add('active');
                     btn.classList.remove('bg-white', 'text-gray-700');
                 } else {
@@ -818,14 +1227,12 @@
                 }
             });
 
-            // Filter Dataset
             const filtered = category === 'All' 
                 ? storesData 
                 : storesData.filter(s => s.category === category);
 
             renderStoreCards(filtered);
 
-            // If navigating from Home category tiles, switch to directory page
             if (!document.getElementById('page-directory').classList.contains('active')) {
                 navigateTo('directory');
             }
@@ -859,20 +1266,20 @@
             grid.innerHTML = stores.map(store => `
                 <div class="bg-white rounded-3xl border border-cream-300 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col justify-between">
                     <div>
-                        <!-- Store Card Header / Photo Placeholder -->
+                        <!-- Store Card Header -->
                         <div class="h-36 bg-gradient-to-r from-forest-800 to-forest-700 p-5 flex flex-col justify-between text-white relative">
                             <span class="self-start bg-sand text-forest-900 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full tracking-wider">
                                 ${store.category}
                             </span>
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center text-lg text-cream-100 border border-white/20">
+                                <div class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center text-lg text-cream-100 border border-white/20 shrink-0">
                                     <i class="fa-solid ${store.icon}"></i>
                                 </div>
-                                <h3 class="font-extrabold text-lg text-cream-50 leading-tight">${store.name}</h3>
+                                <h3 class="font-extrabold text-base sm:text-lg text-cream-50 leading-tight">${store.name}</h3>
                             </div>
                         </div>
 
-                        <!-- Card Content -->
+                        <!-- Card Body -->
                         <div class="p-5 space-y-3 text-xs sm:text-sm">
                             <div class="flex items-start gap-2 text-gray-600">
                                 <i class="fa-solid fa-clock text-forest-700 mt-1"></i>
@@ -915,7 +1322,7 @@
                     <td class="py-4 px-6 text-gray-600">${store.days}</td>
                     <td class="py-4 px-6 text-center">
                         <a href="${store.mapUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-bold bg-cream-200 hover:bg-cream-300 text-forest-900 px-3 py-1.5 rounded-lg transition">
-                            <i class="fa-solid fa-directions"></i> Get Directions
+                            <i class="fa-solid fa-directions"></i> Map
                         </a>
                     </td>
                 </tr>
@@ -940,7 +1347,7 @@
             document.getElementById('modal-map-link').href = store.mapUrl;
 
             document.getElementById('store-modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         // Close Modal

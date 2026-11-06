@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Bartolome Stores - Local Business Directory</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: {
+                            50: '#f2f7f4',
+                            100: '#dfede4',
+                            500: '#2d7a52',
+                            700: '#1e4d35',
+                            800: '#183f2c',
+                            900: '#143524',
+                        },
+                        cream: {
+                            50: '#fcfbfa',
+                            100: '#f7f5ee',
+                            200: '#f0ebd8',
+                            300: '#e5dec3',
+                        },
+                        sand: '#d3c7a1',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #f7f5ee;
+            color: #1c2621;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1ede0;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #1e4d35;
+            border-radius: 4px;
+        }
+
+        .tab-btn.active {
+            color: #1e4d35;
+            border-bottom: 3px solid #1e4d35;
+            font-weight: 700;
+        }
+        
+        .filter-pill.active {
+            background-color: #1e4d35;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(30, 77, 53, 0.25);
+        }
+
+        /* Smooth tab transition */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .page-section.active {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between custom-scrollbar bg-cream-100 text-gray-800">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-cream-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Brand Logo & Title -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-12 h-12 rounded-xl bg-forest-700 text-cream-100 flex items-center justify-center font-bold text-xl shadow-md">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-forest-900 block leading-none">SAN BARTOLOME STORES</span>
+                        <span class="text-xs font-semibold tracking-widest text-forest-500 uppercase">Local Business Directory</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-4">
+                    <button onclick="navigateTo('home')" id="nav-home" class="tab-btn px-3 py-2 text-sm font-medium text-gray-600 hover:text-forest-700 transition">Home</button>
+                    <button onclick="navigateTo('directory')" id="nav-directory" class="tab-btn px-3 py-2 text-sm font-medium text-gray-600 hover:text-forest-700 transition">Store Directory</button>
+                    <button onclick="navigateTo('hours')" id="nav-hours" class="tab-btn px-3 py-2 text-sm font-medium text-gray-600 hover:text-forest-700 transition">Operating Hours</button>
+                    <button onclick="navigateTo('atmosphere')" id="nav-atmosphere" class="tab-btn px-3 py-2 text-sm font-medium text-gray-600 hover:text-forest-700 transition">Store Atmosphere</button>
+                    <button onclick="navigateTo('about')" id="nav-about" class="tab-btn px-3 py-2 text-sm font-medium text-gray-600 hover:text-forest-700 transition">About Us</button>
+                    <button onclick="navigateTo('contact')" id="nav-contact" class="tab-btn px-3 py-2 text-sm font-medium text-gray-600 hover:text-forest-700 transition">Contact Us</button>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-forest-900 p-2 rounded-lg hover:bg-cream-200 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-50 border-b border-cream-200 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="navigateTo('home')" class="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 hover:bg-forest-50 hover:text-forest-800">Home</button>
+            <button onclick="navigateTo('directory')" class="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 hover:bg-forest-50 hover:text-forest-800">Store Directory</button>
+            <button onclick="navigateTo('hours')" class="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 hover:bg-forest-50 hover:text-forest-800">Operating Hours</button>
+            <button onclick="navigateTo('atmosphere')" class="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 hover:bg-forest-50 hover:text-forest-800">Store Atmosphere</button>
+            <button onclick="navigateTo('about')" class="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 hover:bg-forest-50 hover:text-forest-800">About Us</button>
+            <button onclick="navigateTo('contact')" class="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 hover:bg-forest-50 hover:text-forest-800">Contact Us</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINERS -->
+    <main class="flex-grow">
+
+        <!-- ================= PAGE 1: HOME ================= -->
+        <section id="page-home" class="page-section active">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-forest-900 via-forest-700 to-forest-800 text-white py-16 lg:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d3c7a1_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="max-w-5xl mx-auto text-center relative z-10">
+                    <span class="inline-block bg-cream-200/20 text-cream-100 text-xs sm:text-sm font-semibold tracking-wider uppercase px-4 py-1.5 rounded-full mb-6 border border-cream-100/30">
+                        Barangay San Bartolome, Novaliches, Quezon City
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                        WELCOME TO SAN BARTOLOME STORES!
+                    </h1>
+                    <p class="text-base sm:text-xl text-cream-100 max-w-3xl mx-auto mb-8 font-light leading-relaxed">
+                        Your online guide to discovering local businesses, operating hours, products, and store environments in Barangay San Bartolome.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <button onclick="navigateTo('directory')" class="bg-cream-100 text-forest-900 hover:bg-white px-7 py-3.5 rounded-xl font-bold text-sm sm:text-base transition shadow-lg flex items-center gap-2">
+                            <i class="fa-solid fa-compass"></i> EXPLORE STORES
+                        </button>
+                        <button onclick="navigateTo('hours')" class="bg-forest-500/40 text-cream-100 hover:bg-forest-500/60 border border-cream-100/30 px-7 py-3.5 rounded-xl font-bold text-sm sm:text-base transition flex items-center gap-2">
+                            <i class="fa-solid fa-clock"></i> OPERATING HOURS
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Intro & Stats -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-forest-900 mb-4">Support Local. Explore Barangay San Bartolome.</h2>
+                    <p class="text-gray-600 leading-relaxed">
+                        Whether you are looking for groceries, pharmacy essentials, optical care, quick dining, or everyday goods, our directory connects you to verified local establishments in our community.
+                    </p>
+                </div>
+
+                <!-- Featured Category Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-16">
+                    <div onclick="filterByCategory('Restaurants / Cafes')" class="bg-white p-6 rounded-2xl shadow-sm border border-cream-200 hover:border-forest-500 hover:shadow-md transition cursor-pointer text-center group">
+                        <div class="w-14 h-14 bg-forest-50 text-forest-700 rounded-xl flex items-center justify-center text-2xl mx-auto mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h3 class="font-bold text-forest-900">Food & Dining</h3>
+                        <p class="text-xs text-gray-500 mt-1">Fast food, cafés & meals</p>
+                    </div>
+                    <div onclick="filterByCategory('Pharmacy')" class="bg-white p-6 rounded-2xl shadow-sm border border-cream-200 hover:border-forest-500 hover:shadow-md transition cursor-pointer text-center group">
+                        <div class="w-14 h-14 bg-forest-50 text-forest-700 rounded-xl flex items-center justify-center text-2xl mx-auto mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-prescription-bottle-medical"></i>
+                        </div>
+                        <h3 class="font-bold text-forest-900">Pharmacies</h3>
+                        <p class="text-xs text-gray-500 mt-1">Medicines & care</p>
+                    </div>
+                    <div onclick="filterByCategory('Department Store')" class="bg-white p-6 rounded-2xl shadow-sm border border-cream-200 hover:border-forest-500 hover:shadow-md transition cursor-pointer text-center group">
+                        <div class="w-14 h-14 bg-forest-50 text-forest-700 rounded-xl flex items-center justify-center text-2xl mx-auto mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <h3 class="font-bold text-forest-900">Department Stores</h3>
+                        <p class="text-xs text-gray-500 mt-1">Clothing & home items</p>
+                    </div>
+                    <div onclick="filterByCategory('Community Store')" class="bg-white p-6 rounded-2xl shadow-sm border border-cream-200 hover:border-forest-500 hover:shadow-md transition cursor-pointer text-center group">
+                        <div class="w-14 h-14 bg-forest-50 text-forest-700 rounded-xl flex items-center justify-center text-2xl mx-auto mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-shop"></i>
+                        </div>
+                        <h3 class="font-bold text-forest-900">Community Stores</h3>
+                        <p class="text-xs text-gray-500 mt-1">Sari-sari & groceries</p>
+                    </div>
+                </div>
+
+                <!-- Atmosphere Highlight Card -->
+                <div class="bg-forest-900 text-cream-100 rounded-3xl p-8 sm:p-12 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl">
+                    <div class="max-w-2xl">
+                        <span class="text-sand text-xs font-bold uppercase tracking-wider">Research Integrated</span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold mt-1 mb-4">Discover Store Atmosphere & Design</h3>
+                        <p class="text-cream-200 text-sm sm:text-base leading-relaxed font-light">
+                            Our directory incorporates store atmosphere evaluations—highlighting product display arrangements, layout accessibility, lighting, and overall cleanliness to give you a complete preview before you shop.
+                        </p>
+                    </div>
+                    <button onclick="navigateTo('atmosphere')" class="bg-sand text-forest-900 hover:bg-white px-6 py-3.5 rounded-xl font-bold text-sm whitespace-nowrap transition shadow-md">
+                        Learn About Store Design <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: STORE DIRECTORY ================= -->
+        <section id="page-directory" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <!-- Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-cream-200 pb-6">
+                    <div>
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-forest-900 tracking-tight">San Bartolome Store Directory</h1>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">Explore registered businesses, operational details, and store profiles across Quirino Highway, Katipunan Ave, Holy Cross & P. Dela Cruz St.</p>
+                </div>
+                
+                <!-- Search Input -->
+                <div class="relative w-full md:w-72">
+                    <input type="text" id="store-search" oninput="handleSearch()" placeholder="Search store name, product, or street..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-cream-300 focus:outline-none focus:ring-2 focus:ring-forest-700 text-sm">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Category Filters (Pills) -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 custom-scrollbar">
+                <button onclick="filterByCategory('All')" class="filter-pill active whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition border border-cream-300 hover:border-forest-700">
+                    All Stores
+                </button>
+                <button onclick="filterByCategory('Café & Food')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
+                    <i class="fa-solid fa-mug-hot mr-1.5 text-forest-700"></i> Cafés & Restaurants
+                </button>
+                <button onclick="filterByCategory('Pharmacy')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
+                    <i class="fa-solid fa-pills mr-1.5 text-forest-700"></i> Pharmacies & Care
+                </button>
+                <button onclick="filterByCategory('Grocery')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
+                    <i class="fa-solid fa-cart-shopping mr-1.5 text-forest-700"></i> Grocery & Convenience
+                </button>
+                <button onclick="filterByCategory('Bakery & Specialty')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
+                    <i class="fa-solid fa-cake-candles mr-1.5 text-forest-700"></i> Bakery & Specialty
+                </button>
+                <button onclick="filterByCategory('General Merchandise')" class="filter-pill whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-gray-700 border border-cream-300 hover:border-forest-700">
+                    <i class="fa-solid fa-store mr-1.5 text-forest-700"></i> Department & Merchandise
+                </button>
+            </div>
+
+            <!-- Stores Cards Grid -->
+            <div id="store-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cards will be populated dynamically via JavaScript -->
+            </div>
+
+            <!-- Empty State Message -->
+            <div id="no-results" class="hidden text-center py-16">
+                <div class="w-16 h-16 bg-cream-200 text-gray-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fa-solid fa-store-slash"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-700">No stores found</h3>
+                <p class="text-gray-500 text-sm mt-1">Try adjusting your search term or category filter.</p>
+            </div>
+        </div>
+    </section>
+
+        <!-- ================= PAGE 3: OPERATING HOURS ================= -->
+        <section id="page-hours" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="mb-8">
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-forest-900 tracking-tight">Store Operating Hours</h1>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">Find out when local establishments in Barangay San Bartolome open and close.</p>
+                </div>
+
+                <!-- Responsive Hours Table Container -->
+                <div class="bg-white rounded-2xl shadow-sm border border-cream-300 overflow-hidden mb-6">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-forest-900 text-cream-100 text-xs sm:text-sm font-semibold uppercase tracking-wider">
+                                    <th class="py-4 px-6">Store Name</th>
+                                    <th class="py-4 px-6">Category</th>
+                                    <th class="py-4 px-6">Opening Time</th>
+                                    <th class="py-4 px-6">Closing Time</th>
+                                    <th class="py-4 px-6">Days Active</th>
+                                    <th class="py-4 px-6 text-center">Location</th>
+                                </tr>
+                            </thead>
+                            <tbody id="hours-table-body" class="divide-y divide-cream-200 text-sm">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Schedule Disclaimer Note -->
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3 text-amber-900 text-xs sm:text-sm">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-600 text-lg mt-0.5"></i>
+                    <div>
+                        <strong class="font-bold">Important Schedule Note:</strong>
+                        <p class="mt-0.5">Please be advised that store operating hours may change during holidays, feast days, or special occasions. Customers are encouraged to contact the establishment directly or check their Google Maps link to confirm real-time schedules.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 4: STORE ATMOSPHERE ================= -->
+        <section id="page-atmosphere" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <!-- Header -->
+                <div class="max-w-3xl mb-12">
+                    <span class="text-forest-700 text-xs font-bold uppercase tracking-widest">Research Framework</span>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-forest-900 tracking-tight mt-1">Understanding the Shopping Environment</h1>
+                    <p class="text-gray-600 mt-3 leading-relaxed">
+                        Store atmosphere refers to the physical environment and visual attributes of an establishment. It shapes how customers perceive products, navigate spaces, and feel during their shopping experience.
+                    </p>
+                </div>
+
+                <!-- 3 Pillars Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    <!-- Pillar 1 -->
+                    <div class="bg-white p-8 rounded-2xl border border-cream-300 shadow-sm relative flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-forest-100 text-forest-700 rounded-2xl flex items-center justify-center text-2xl font-bold mb-6">
+                                1
+                            </div>
+                            <h3 class="text-xl font-bold text-forest-900 mb-3">Store Display</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                Refers to how merchandise is organized, categorized, and visually presented on shelves or counter racks.
+                            </p>
+                            <ul class="text-xs text-gray-500 space-y-2 border-t border-cream-200 pt-4">
+                                <li class="flex items-center"><i class="fa-solid fa-check text-forest-500 mr-2"></i> Category groupings (e.g. cosmetics vs pharmacy)</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-forest-500 mr-2"></i> Eye-level promotional shelf placements</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-forest-500 mr-2"></i> Clear price tagging and labels</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="bg-white p-8 rounded-2xl border border-cream-300 shadow-sm relative flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-forest-100 text-forest-700 rounded-2xl flex items-center justify-center text-2xl font-bold mb-6">
+                                2
+                            </div>
+                            <h3 class="text-xl font-bold text-forest-900 mb-3">Store Design & Layout</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                Encompasses spatial layout, aisle widths, counter locations, and overall foot-traffic flow inside the store.
+                            </p>
+                            <ul class="text-xs text-gray-500 space-y-2 border-t border-cream-200 pt-4">
+                                <li class="flex items-center"><i class="fa-solid fa-check text-forest-500 mr-2"></i> Unobstructed walkway width</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-forest-500 mr-2"></i> Convenient checkout placement</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-forest-500 mr-2"></i> Accessible rack heights</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="bg-white p-8 rounded-2xl border border-cream-300 shadow-sm relative flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-forest-100 text-forest-700 rounded-2xl flex items-center justify-center text-2xl font-bold mb-6">
+                                3
+                            </div>
+                            <h3 class="text-xl font-bold text-forest-900 mb-3">Overall Appearance</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                Ambient elements such as lighting intensity, temperature control, floor cleanliness, and background environment.
+                            </p>
+                            <ul class="text-xs text-gray-500 space-y-2 border-t border-cream-200 pt-4">
+                                <li class="flex items-center"><i class="fa-solid fa-check text-forest-500 mr-2"></i> Well-lit, bright interior lighting</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-forest-500 mr-2"></i> Clean floors and dust-free counters</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-forest-500 mr-2"></i> Comfortable ambient air temperature</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Impact Explainer Card -->
+                <div class="bg-cream-200 border border-cream-300 rounded-3xl p-8 sm:p-10">
+                    <h3 class="text-xl font-bold text-forest-900 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb text-forest-700"></i> How Store Atmosphere Influences Purchasing Behavior
+                    </h3>
+                    <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-4">
+                        A comfortable and organized store environment encourages customers to spend more time exploring available products. Well-arranged merchandise catches shoppers' attention, while proper lighting, air conditioning, and cleanliness enhance customer satisfaction and store loyalty within Barangay San Bartolome.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 5: ABOUT US ================= -->
+        <section id="page-about" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Title -->
+                    <div class="text-center mb-12">
+                        <span class="text-forest-700 font-bold text-xs uppercase tracking-widest">About Our Directory</span>
+                        <h1 class="text-3xl sm:text-5xl font-extrabold text-forest-900 mt-2">Connecting Customers to San Bartolome Stores</h1>
+                    </div>
+
+                    <!-- Description Block -->
+                    <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-cream-300 mb-12 leading-relaxed text-gray-700 space-y-6">
+                        <p>
+                            <strong class="text-forest-900">San Bartolome Stores</strong> is an online local business directory designed to provide accessible and reliable information about actual stores and commercial establishments operating within <strong>Barangay San Bartolome, Novaliches, Quezon City</strong>.
+                        </p>
+                        <p>
+                            The project aims to support the local business ecosystem by making it simple for residents, visitors, and customers to find store locations, verify opening and closing schedules, explore available products, and gain insights into individual store atmospheres.
+                        </p>
+                    </div>
+
+                    <!-- Mission, Vision, Objectives Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                        <div class="bg-forest-900 text-cream-100 p-8 rounded-3xl shadow-md">
+                            <div class="w-12 h-12 bg-sand text-forest-900 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3">Our Mission</h3>
+                            <p class="text-cream-200 text-sm font-light leading-relaxed">
+                                To make it easier for community members and visitors to discover local establishments and access accurate store operational details in Barangay San Bartolome.
+                            </p>
+                        </div>
+
+                        <div class="bg-forest-700 text-cream-100 p-8 rounded-3xl shadow-md">
+                            <div class="w-12 h-12 bg-cream-100 text-forest-900 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3">Our Vision</h3>
+                            <p class="text-cream-200 text-sm font-light leading-relaxed">
+                                To serve as a trusted digital bridge that promotes community entrepreneurship and encourages residents to shop local and support nearby neighborhood businesses.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Objectives List -->
+                    <div class="bg-white p-8 rounded-3xl border border-cream-300">
+                        <h3 class="text-xl font-bold text-forest-900 mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-forest-700"></i> Core Objectives
+                        </h3>
+                        <ol class="space-y-4 text-sm text-gray-700 list-decimal pl-5">
+                            <li class="pl-2">Provide an updated directory of stores operating in Barangay San Bartolome.</li>
+                            <li class="pl-2">Display accurate opening and closing schedules for customer convenience.</li>
+                            <li class="pl-2">Assist customers in navigating to store locations using integrated map direction links.</li>
+                            <li class="pl-2">Highlight key store atmosphere factors including lighting, display arrangements, and design layout.</li>
+                            <li class="pl-2">Foster local commercial awareness and community economic growth.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 6: CONTACT US ================= -->
+        <section id="page-contact" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-10">
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-forest-900">We Want to Hear From You!</h1>
+                        <p class="text-gray-600 mt-2 text-sm sm:text-base">Do you own or know a local store in Barangay San Bartolome that should be listed or updated?</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                        <div class="bg-white p-6 rounded-2xl border border-cream-300 text-center shadow-sm">
+                            <div class="w-12 h-12 bg-forest-50 text-forest-700 rounded-full flex items-center justify-center text-xl mx-auto mb-3">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <h4 class="font-bold text-forest-900 text-sm">Email Inquiry</h4>
+                            <p class="text-xs text-gray-500 mt-1">sanbartolemestores@gmail.com</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-cream-300 text-center shadow-sm">
+                            <div class="w-12 h-12 bg-forest-50 text-forest-700 rounded-full flex items-center justify-center text-xl mx-auto mb-3">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </div>
+                            <h4 class="font-bold text-forest-900 text-sm">Facebook Page</h4>
+                            <p class="text-xs text-gray-500 mt-1">facebook.com/SanBartolomeStores</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-cream-300 text-center shadow-sm">
+                            <div class="w-12 h-12 bg-forest-50 text-forest-700 rounded-full flex items-center justify-center text-xl mx-auto mb-3">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <h4 class="font-bold text-forest-900 text-sm">Coverage Area</h4>
+                            <p class="text-xs text-gray-500 mt-1">San Bartolome, Quezon City</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact/Submission Form -->
+                    <div class="bg-white p-8 sm:p-10 rounded-3xl border border-cream-300 shadow-sm">
+                        <h3 class="text-xl font-bold text-forest-900 mb-6">Submit a Store Recommendation / Correction</h3>
+                        <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Your Name</label>
+                                    <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-cream-300 focus:ring-2 focus:ring-forest-700 focus:outline-none text-sm" placeholder="Juan Dela Cruz">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Email / Phone</label>
+                                    <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-cream-300 focus:ring-2 focus:ring-forest-700 focus:outline-none text-sm" placeholder="juan@example.com">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Store Name</label>
+                                <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-cream-300 focus:ring-2 focus:ring-forest-700 focus:outline-none text-sm" placeholder="e.g. Aling Nena's Store">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Message / Details</label>
+                                <textarea rows="4" required class="w-full px-4 py-2.5 rounded-xl border border-cream-300 focus:ring-2 focus:ring-forest-700 focus:outline-none text-sm" placeholder="Provide store address, operating hours, products offered, or update requests..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-forest-700 hover:bg-forest-800 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-md">
+                                Submit Recommendation
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- STORE DETAIL MODAL POPUP -->
+    <div id="store-modal" class="fixed inset-0 z-50 hidden bg-forest-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-cream-300 custom-scrollbar relative">
+            
+            <!-- Close Modal Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-cream-100 hover:bg-cream-200 text-gray-600 rounded-full flex items-center justify-center transition focus:outline-none">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal Header Banner -->
+            <div id="modal-banner" class="h-44 bg-gradient-to-r from-forest-800 to-forest-700 p-6 flex flex-col justify-end text-white relative">
+                <span id="modal-category-tag" class="inline-block bg-sand text-forest-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider w-max mb-2">
+                    Category
+                </span>
+                <h2 id="modal-store-name" class="text-2xl sm:text-3xl font-extrabold text-cream-50">Store Name</h2>
+            </div>
+
+            <!-- Modal Body Content -->
+            <div class="p-6 sm:p-8 space-y-6">
+                <!-- Info Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-cream-100 p-4 rounded-2xl border border-cream-200 text-sm">
+                    <div>
+                        <strong class="text-forest-900 block text-xs uppercase tracking-wider mb-1">Address & Location</strong>
+                        <p id="modal-address" class="text-gray-700">Quirino Highway, San Bartolome</p>
+                    </div>
+                    <div>
+                        <strong class="text-forest-900 block text-xs uppercase tracking-wider mb-1">Operating Schedule</strong>
+                        <p id="modal-hours" class="text-gray-700">10:00 AM – 9:00 PM (Daily)</p>
+                    </div>
+                    <div class="sm:col-span-2 border-t border-cream-200 pt-3">
+                        <strong class="text-forest-900 block text-xs uppercase tracking-wider mb-1">Products & Services</strong>
+                        <p id="modal-products" class="text-gray-700">Clothing, accessories, everyday items.</p>
+                    </div>
+                </div>
+
+                <!-- Atmosphere Breakdown Section -->
+                <div>
+                    <h3 class="text-lg font-bold text-forest-900 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-store text-forest-700"></i> Store Atmosphere Analysis
+                    </h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-white p-3.5 rounded-xl border border-cream-300">
+                            <strong class="text-forest-800 font-semibold block text-xs uppercase">1. Store Display</strong>
+                            <p id="modal-display" class="text-gray-600 mt-1">Products arranged by categories on open displays.</p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-cream-300">
+                            <strong class="text-forest-800 font-semibold block text-xs uppercase">2. Store Design & Layout</strong>
+                            <p id="modal-design" class="text-gray-600 mt-1">Wide main pathways with prominent cashier counter location.</p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-cream-300">
+                            <strong class="text-forest-800 font-semibold block text-xs uppercase">3. Overall Appearance</strong>
+                            <p id="modal-appearance" class="text-gray-600 mt-1">Bright overhead lighting and air-conditioned environment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                    <a id="modal-map-link" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 bg-forest-700 hover:bg-forest-800 text-white font-bold py-3 px-4 rounded-xl text-center text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-location-dot"></i> Open Google Maps Directions
+                    </a>
+                    <button onclick="closeModal()" class="bg-cream-200 hover:bg-cream-300 text-gray-700 font-bold py-3 px-6 rounded-xl text-sm transition">
+                        Close Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER WITH DISCLAIMER -->
+    <footer class="bg-forest-900 text-cream-100 border-t border-forest-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-forest-800">
+                <div>
+                    <div class="flex items-center space-x-2 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-sand text-forest-900 flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+                        <span class="font-bold text-lg text-white">SAN BARTOLOME STORES</span>
+                    </div>
+                    <p class="text-xs text-cream-200 leading-relaxed font-light">
+                        Online directory dedicated to showcasing actual local stores, schedules, and shopping environments in Barangay San Bartolome, Novaliches, Quezon City.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-sand mb-3">Quick Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><button onclick="navigateTo('directory')" class="hover:text-sand transition">Store Directory</button></li>
+                        <li><button onclick="navigateTo('hours')" class="hover:text-sand transition">Store Schedules</button></li>
+                        <li><button onclick="navigateTo('atmosphere')" class="hover:text-sand transition">Store Atmosphere Study</button></li>
+                        <li><button onclick="navigateTo('about')" class="hover:text-sand transition">About Project</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-sand mb-3">Barangay Coverage</h4>
+                    <p class="text-xs text-cream-200 font-light leading-relaxed">
+                        Quirino Highway, Holy Cross, San Bartolome Road, and SM City Novaliches complex.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Website Legal Disclaimer -->
+            <div class="text-center text-[11px] text-cream-200 font-light leading-relaxed max-w-4xl mx-auto">
+                <p class="mb-2"><strong>WEBSITE DISCLAIMER:</strong> This website is created for informational and educational directory purposes. Store information, business descriptions, and operating hours are provided as a public guide and may change without prior notice. Customers are encouraged to verify details directly with the establishments. Store atmosphere descriptions reflect actual observations and are not official assessments by the businesses.</p>
+                <p>&copy; San Bartolome Stores Local Business Directory. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC & STORE DATA -->
+    <script>
+        // COMPREHENSIVE STORE DATASET (All San Bartolome Establishments)
+        const storesData = [
+            // --- CAFES & RESTAURANTS / FOOD ---
+            {
+                id: 'coffee-816',
+                name: '816 Coffee & Co. - QC',
+                category: 'Café & Food',
+                address: 'Blk 1 Lot 1 Katipunan Ave, Goodwill Homes 1, San Bartolome, Novaliches, Quezon City',
+                opening: '1:00 PM',
+                closing: '10:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Espresso beverages, iced coffee, pastries, handcrafted drinks, and light snacks.',
+                icon: 'fa-mug-hot',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=816+Coffee+%26+Co.+Goodwill+Homes+1+San+Bartolome+Quezon+City',
+                atmosphere: {
+                    display: 'Modern espresso bar counter featuring visible coffee beans and baked goods display.',
+                    design: 'Cozy café layout with indoor tables, warm ambient seating, and relaxing study nooks.',
+                    appearance: 'Relaxing aesthetic, warm LED lighting, clean interiors, and air-conditioned environment.'
+                }
+            },
+            {
+                id: 'descarts-cafe',
+                name: 'Descarts Cafe',
+                category: 'Café & Food',
+                address: '3rd Floor, GD Plaza, 717 Quirino Hwy, San Bartolome, Novaliches, Quezon City',
+                opening: '10:00 AM',
+                closing: '8:00 PM',
+                days: 'Mon–Sat',
+                products: 'Specialty coffee, frappes, tea, pasta, and light meals.',
+                icon: 'fa-cup-taster',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Descarts+Cafe+GD+Plaza+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Charming chalkboard menus and elevated pastry showcase at the counter.',
+                    design: 'Compact third-floor café space with glass windows overlooking Quirino Highway.',
+                    appearance: 'Clean, quiet, and relaxing ambiance suitable for conversation and coffee.'
+                }
+            },
+            {
+                id: 'wealth-tea',
+                name: 'Wealth Tea',
+                category: 'Café & Food',
+                address: '67 California Village, Katipunan Avenue, SB Diversion Road, Novaliches, Quezon City',
+                opening: '1:00 PM',
+                closing: '10:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Bobba milk teas, fruit teas, slushies, and quick finger foods. Contact: 0926 240 2921.',
+                icon: 'fa-glass-water',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Wealth+Tea+California+Village+Katipunan+Avenue+San+Bartolome',
+                atmosphere: {
+                    display: 'Colorful beverage menu wall displays with customized tea topping options.',
+                    design: 'Casual milk tea shop setup with comfortable seating for group hangouts.',
+                    appearance: 'Brightly lit, cheerful vibe with cool indoor temperature.'
+                }
+            },
+            {
+                id: 'jollibee-nova-square',
+                name: 'Jollibee – Nova Square',
+                category: 'Café & Food',
+                address: 'Ground Floor, Nova Square, Quirino Highway corner P. Dela Cruz St, San Bartolome, Novaliches, QC',
+                opening: '24 Hours',
+                closing: '24 Hours',
+                days: 'Daily (Mon–Sun)',
+                products: 'Chickenjoy, Jolly Spaghetti, Yumburgers, Peach Mango Pie, and beverages.',
+                icon: 'fa-utensils',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Jollibee+Nova+Square+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Overhead digital ordering displays and takeaway pickup counters.',
+                    design: 'Spacious fast-food dining hall with booth seating and high-capacity traffic corridors.',
+                    appearance: 'Family-friendly environment, bright interior lighting, and air-conditioned dining.'
+                }
+            },
+            {
+                id: 'kfc-novaliches',
+                name: 'KFC – SM City Novaliches',
+                category: 'Café & Food',
+                address: 'Ground Floor, SM City Novaliches, Quirino Highway, Brgy. San Bartolome, Quezon City',
+                opening: '9:00 AM',
+                closing: '8:30 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Original Recipe fried chicken, Zinger burgers, rice meals, and fixins.',
+                icon: 'fa-burger',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=KFC+SM+City+Novaliches+San+Bartolome+Quezon+City',
+                atmosphere: {
+                    display: 'Promotional combos illuminated above ordering stations.',
+                    design: 'Open dining layout with comfortable seating booths near mall access.',
+                    appearance: 'Clean fast-food setup with high-turnover service.'
+                }
+            },
+            {
+                id: 'momocha-a',
+                name: 'Momocha-a',
+                category: 'Café & Food',
+                address: '#1 Holy Cross Road, Novaliches, Quezon City',
+                opening: '10:00 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Milk tea, fruit teas, pearl drinks, and quick snacks.',
+                icon: 'fa-whiskey-glass',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Momocha-a+Holy+Cross+Road+Novaliches+Quezon+City',
+                atmosphere: {
+                    display: 'Countertop menu boards showcasing seasonal milk tea flavors.',
+                    design: 'Quick service counter with cozy wait area for takeout and walk-ins.',
+                    appearance: 'Neat neighborhood beverage spot with friendly ambiance.'
+                }
+            },
+            {
+                id: 'garahe-kuya-jo',
+                name: 'Garahe ni Kuya JO',
+                category: 'Café & Food',
+                address: '18 Rockville Avenue, Rockville Subdivision, San Bartolome, Novaliches, Quezon City',
+                opening: '11:00 AM',
+                closing: '9:30 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Sizzling meals, grilled dishes, rice plates, and local comfort food.',
+                icon: 'fa-fire-burner',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Garahe+ni+Kuya+JO+Rockville+Subdivision+San+Bartolome',
+                atmosphere: {
+                    display: 'Open-air kitchen grill setup where guests can view meal preparation.',
+                    design: 'Garage-style casual alfresco dining layout with spacious rustic tables.',
+                    appearance: 'Welcoming neighborhood vibe with breezy open-air dining.'
+                }
+            },
+            {
+                id: 'dunkin-nova-square',
+                name: 'Dunkin\' – Holy Cross / Nova Square',
+                category: 'Café & Food',
+                address: 'Nova Square area, Quirino Highway, San Bartolome, Novaliches, Quezon City',
+                opening: '6:00 AM',
+                closing: '10:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Donuts, Munchkins, brewed coffee, iced coffee, and savory sandwiches.',
+                icon: 'fa-donut',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Dunkin+Nova+Square+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Glass bakery display case showcasing fresh daily donut varieties.',
+                    design: 'Convenient grab-and-go counter with small café seating area.',
+                    appearance: 'Bright orange and pink branding with clean counter space.'
+                }
+            },
+            {
+                id: 'mang-boy-lugawan',
+                name: 'Mang Boy Lugawan',
+                category: 'Café & Food',
+                address: '50 King George Street, Kingspoint / San Bartolome area, Novaliches, Quezon City',
+                opening: '6:00 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Hot lugaw (rice porridge), tokwa\'t baboy, hard-boiled eggs, and local snacks.',
+                icon: 'fa-bowl-food',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Mang+Boy+Lugawan+King+George+Street+Novaliches',
+                atmosphere: {
+                    display: 'Pot displays of warm rice porridge with condiment counter for toppings.',
+                    design: 'Casual open-front diner with bench seating for quick neighborhood meals.',
+                    appearance: 'Simple, clean, and authentic local food eatery.'
+                }
+            },
+            {
+                id: 'cafe-de-franz',
+                name: 'Cafe de Franz',
+                category: 'Café & Food',
+                address: 'Katipunan Avenue, Goodwill Homes 1 area, San Bartolome, Novaliches, Quezon City',
+                opening: '12:00 PM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Iced coffee, blended drinks, teas, and savory light bites.',
+                icon: 'fa-coffee',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Cafe+de+Franz+Katipunan+Avenue+Goodwill+Homes+Quezon+City',
+                atmosphere: {
+                    display: 'Minimalist menu board displaying specialty beverages and pastries.',
+                    design: 'Relaxed neighborhood coffee shop layout with comfortable seating.',
+                    appearance: 'Cozy lighting and peaceful ambiance.'
+                }
+            },
+
+            // --- PHARMACY & HEALTHCARE ---
+            {
+                id: 'mercury-drug-nova',
+                name: 'Mercury Drug – Nova Square',
+                category: 'Pharmacy',
+                address: 'Nova Square, Quirino Highway corner P. Dela Cruz St, San Bartolome, Novaliches, QC',
+                opening: '24 Hours',
+                closing: '24 Hours',
+                days: 'Daily (Mon–Sun)',
+                products: 'Prescription drugs, over-the-counter medicine, medical supplies, and personal care.',
+                icon: 'fa-prescription',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Mercury+Drug+Nova+Square+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Clear counter-based medicine sections and categorized self-service personal aisles.',
+                    design: 'Structured pharmacist queue lines with quick service window counters.',
+                    appearance: 'Clean, well-lit, air-conditioned, and highly organized pharmacy.'
+                }
+            },
+            {
+                id: 'watsons-novaliches',
+                name: 'Watsons – SM City Novaliches',
+                category: 'Pharmacy',
+                address: 'Ground Floor, SM City Novaliches, Quirino Highway, Brgy. San Bartolome, Quezon City',
+                opening: '10:00 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Medicines, skincare, cosmetics, vitamins, and personal hygiene essentials.',
+                icon: 'fa-pills',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Watsons+SM+City+Novaliches+San+Bartolome+Quezon+City',
+                atmosphere: {
+                    display: 'Categorized shelves for prescription drugs, beauty brands, and health supplements.',
+                    design: 'Gondola shelf layout designed for easy browsing and guided checkout queues.',
+                    appearance: 'Vibrant white lighting, spotless floors, cool indoor temperature.'
+                }
+            },
+            {
+                id: 'tgp-goodwill',
+                name: 'The Generics Pharmacy – Goodwill Homes 1',
+                category: 'Pharmacy',
+                address: 'Katipunan Avenue, Goodwill Homes 1, San Bartolome, Novaliches, Quezon City',
+                opening: '7:00 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Affordable generic medicines, vitamins, supplements, and basic health supplies.',
+                icon: 'fa-capsules',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=The+Generics+Pharmacy+Goodwill+Homes+1+Katipunan+Ave+San+Bartolome',
+                atmosphere: {
+                    display: 'Organized prescription medicine shelves behind a clear glass counter.',
+                    design: 'Simple counter-service pharmacy layout for fast neighborhood transactions.',
+                    appearance: 'Clean, accessible, and practical healthcare setup.'
+                }
+            },
+            {
+                id: 'tgp-brgy-hall',
+                name: 'The Generics Pharmacy – Near Brgy. Hall',
+                category: 'Pharmacy',
+                address: 'Near Barangay San Bartolome Hall, Novaliches, Quezon City',
+                opening: '7:00 AM',
+                closing: '8:30 PM',
+                days: 'Mon–Sat',
+                products: 'Generic pharmaceutical drugs, medical supplies, and health supplements.',
+                icon: 'fa-notes-medical',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=The+Generics+Pharmacy+Near+Barangay+Hall+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Clear price labels and medicine list displays on counter glass.',
+                    design: 'Compact store footprint with walk-up service window.',
+                    appearance: 'Neat, modest, and conveniently located.'
+                }
+            },
+            {
+                id: 'eo-optical',
+                name: 'EO Executive Optical – SM Novaliches',
+                category: 'Pharmacy',
+                address: 'Ground Floor, SM City Novaliches, Quirino Highway, Brgy. San Bartolome, Quezon City',
+                opening: '10:00 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Prescription eyeglasses, fashion sunglasses, contact lenses, and eye checkups.',
+                icon: 'fa-glasses',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=EO+Executive+Optical+SM+City+Novaliches',
+                atmosphere: {
+                    display: 'Illuminated glass display cabinets presenting eyeglass frames.',
+                    design: 'Open consultation desk with optical refraction room.',
+                    appearance: 'Sleek, modern design with quiet atmosphere and mirror stations.'
+                }
+            },
+            {
+                id: 'villarica-pawnshop-684',
+                name: 'Villarica Pawnshop – Quirino Hwy',
+                category: 'Pharmacy',
+                address: '684 Quirino Highway, San Bartolome, Novaliches, Quezon City',
+                opening: '8:00 AM',
+                closing: '6:00 PM',
+                days: 'Mon–Fri',
+                products: 'Pawn transactions, jewelry appraisal, and money remittance services.',
+                icon: 'fa-hand-holding-dollar',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Villarica+Pawnshop+684+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Secured glass counter displaying transaction rates and policies.',
+                    design: 'Customer service bench area with teller windows.',
+                    appearance: 'Orderly, bright, and secure environment.'
+                }
+            },
+
+            // --- GROCERY & CONVENIENCE STORES ---
+            {
+                id: 'dali-holy-cross',
+                name: 'DALI Everyday Grocery – Holy Cross',
+                category: 'Grocery',
+                address: 'P. Dela Cruz St, San Bartolome, Novaliches, Quezon City, Metro Manila',
+                opening: '6:30 AM',
+                closing: '10:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Discounted groceries, dairy, frozen goods, snacks, beverages, and cleaning products.',
+                icon: 'fa-basket-shopping',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=DALI+Everyday+Grocery+P.+dela+Cruz+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Hard-discount box store layout with items displayed directly in open shipping boxes.',
+                    design: 'Wide straight aisles facilitating fast cart navigation and quick checkout lanes.',
+                    appearance: 'Bright white lighting, clean floors, simple and highly efficient shopping space.'
+                }
+            },
+            {
+                id: 'eomma-korean-mart',
+                name: 'Eomma Korean Mart – San Bartolome',
+                category: 'Grocery',
+                address: '697 Quirino Highway, San Bartolome area, Novaliches, Quezon City',
+                opening: '8:30 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Imported Korean ramen, ice cream, kimchi, snacks, beverages, and ingredients.',
+                icon: 'fa-bowl-rice',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Eomma+Korean+Mart+697+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Colorfully arranged shelves featuring Korean snacks, ramen, and freezer units.',
+                    design: 'Compact specialty mini-mart layout optimized for easy browsing.',
+                    appearance: 'Clean, modern, air-conditioned, and vibrant grocery environment.'
+                }
+            },
+            {
+                id: 'seven-eleven-160',
+                name: '7-Eleven – San Bartolome #160',
+                category: 'Grocery',
+                address: 'P. Dela Cruz St, San Bartolome, Novaliches, Quezon City, 1116 Metro Manila',
+                opening: '4:55 AM',
+                closing: '11:55 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Ready-to-eat meals, Big Gulp, City Blends coffee, snacks, and daily essentials.',
+                icon: 'fa-store',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=7-Eleven+P.+Dela+Cruz+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Standardized 7-Eleven product bays, beverage coolers, and food warmers.',
+                    design: 'Streamlined convenience store layout with front cashier and coffee bar.',
+                    appearance: 'Bright fluorescent lighting, cool air conditioning, and quick service.'
+                }
+            },
+            {
+                id: 'seven-eleven-holy-cross',
+                name: '7-Eleven – Holy Cross Road',
+                category: 'Grocery',
+                address: 'Holy Cross Road, San Bartolome, Novaliches, Quezon City',
+                opening: '24 Hours',
+                closing: '24 Hours',
+                days: 'Daily (Mon–Sun)',
+                products: 'Convenience foods, snacks, beverages, e-wallet cash-in, and hygiene items.',
+                icon: 'fa-store',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=7-Eleven+Holy+Cross+Road+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Neatly organized snack shelves and chilled drink refrigerators.',
+                    design: 'Efficient walk-through aisle system leading directly to checkout.',
+                    appearance: 'Air-conditioned, brightly lit, and open round-the-clock.'
+                }
+            },
+            {
+                id: 'botoys-convenience',
+                name: 'BOTOYS Convenience Store',
+                category: 'Grocery',
+                address: '10 Rockville Avenue, Rockville Subdivision, San Bartolome, Novaliches, QC',
+                opening: '6:30 AM',
+                closing: '6:30 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Neighborhood snacks, cold beverages, canned goods, and everyday household items.',
+                icon: 'fa-shop',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=BOTOYS+Convenience+Store+Rockville+Subdivision+San+Bartolome',
+                atmosphere: {
+                    display: 'Simple shelf display of neighborhood snacks and household goods.',
+                    design: 'Accessible suburban convenience shop setup.',
+                    appearance: 'Clean, friendly, and practical residential store.'
+                }
+            },
+            {
+                id: 'srs-community-store',
+                name: 'SRS Community Store – SB Road',
+                category: 'Grocery',
+                address: 'Unit 4, Marcelester Center, California Village, Katipunan Ave, San Bartolome, QC',
+                opening: '7:00 AM',
+                closing: '10:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Community groceries, fresh staples, canned foods, snacks, and toiletries.',
+                icon: 'fa-cart-flatbed',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=SRS+Community+Store+Marcelester+Center+California+Village+San+Bartolome',
+                atmosphere: {
+                    display: 'Grid-style grocery shelves grouped by pantry essentials and snacks.',
+                    design: 'Accessible mini-supermarket layout with central checkout lane.',
+                    appearance: 'Neat, bright, and comfortable neighborhood shopping environment.'
+                }
+            },
+            {
+                id: 'ever-supermarket-quirino',
+                name: 'Ever Supermarket – Quirino Hwy',
+                category: 'Grocery',
+                address: 'Quirino Highway, San Bartolome, Novaliches, Quezon City',
+                opening: '8:00 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Fresh produce, meats, wholesale groceries, toiletries, and appliances.',
+                icon: 'fa-cart-shopping',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Ever+Supermarket+Quirino+Highway+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Full supermarket layout with fresh food racks and packaged grocery aisles.',
+                    design: 'Multiple checkout lanes with wide cart-friendly customer pathways.',
+                    appearance: 'Spacious, well-lit, and bustling supermarket setting.'
+                }
+            },
+
+            // --- BAKERY & SPECIALTY GOODS ---
+            {
+                id: 'simply-bread',
+                name: 'Simply Bread – Near Brgy. Hall',
+                category: 'Bakery & Specialty',
+                address: 'Near Barangay San Bartolome Hall, Novaliches, Quezon City',
+                opening: '6:00 AM',
+                closing: '8:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Freshly baked pandesal, loaf bread, filled buns, and local pastries.',
+                icon: 'fa-wheat-awn',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Simply+Bread+Near+Barangay+Hall+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Glass bakery display case presenting fresh warm breads.',
+                    design: 'Walk-up bakery counter for fast morning purchases.',
+                    appearance: 'Clean bakery setup filled with fresh bread aroma.'
+                }
+            },
+            {
+                id: 'red-ribbon-quirino',
+                name: 'Red Ribbon Bakeshop',
+                category: 'Bakery & Specialty',
+                address: 'Quirino Highway area, San Bartolome, Novaliches, Quezon City',
+                opening: '8:00 AM',
+                closing: '8:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Celebration cakes, Black Forest, rolls, empanadas, and pastries.',
+                icon: 'fa-cake-candles',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Red+Ribbon+Bakeshop+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Refrigerated glass display cases highlighting custom specialty cakes.',
+                    design: 'Clean retail counter with dedicated cake pickup area.',
+                    appearance: 'Brightly lit, welcoming, and signature Red Ribbon bakeshop interior.'
+                }
+            },
+            {
+                id: 'goldilocks-quirino',
+                name: 'Goldilocks Bakeshop',
+                category: 'Bakery & Specialty',
+                address: 'Quirino Highway area, San Bartolome, Novaliches, Quezon City',
+                opening: '8:00 AM',
+                closing: '8:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Polvoron, greeting cakes, native delicacies, breads, and meals.',
+                icon: 'fa-cookie',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Goldilocks+Quirino+Highway+San+Bartolome',
+                atmosphere: {
+                    display: 'Neat displays of boxed native sweets and chilled cake displays.',
+                    design: 'Dual-section setup for bakery takeaway and quick Filipino meals.',
+                    appearance: 'Clean yellow and blue trademark look with cheerful lighting.'
+                }
+            },
+            {
+                id: 'happy-hans-milktea',
+                name: 'Happy Hans Milktea Supplies',
+                category: 'Bakery & Specialty',
+                address: '29 Ramos Compound, Holy Cross, San Bartolome, Novaliches, Quezon City',
+                opening: '9:00 AM (Wed 8 AM)',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Milk tea ingredients, syrups, boba tapioca pearls, cups, and straws.',
+                icon: 'fa-box-open',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Happy+Hans+Milktea+Supplies+Ramos+Compound+Holy+Cross+San+Bartolome',
+                atmosphere: {
+                    display: 'Wholesale product shelves showcasing milk tea powders and packaging.',
+                    design: 'Retail supply store setup with counter billing space.',
+                    appearance: 'Organized specialty store catering to local food entrepreneurs.'
+                }
+            },
+
+            // --- GENERAL MERCHANDISE & SHOPS ---
+            {
+                id: 'sm-store',
+                name: 'SM Store – SM City Novaliches',
+                category: 'General Merchandise',
+                address: 'SM City Novaliches, Quirino Highway, Brgy. San Bartolome, Quezon City',
+                opening: '10:00 AM',
+                closing: '9:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Clothing, fashion accessories, home products, shoes, and everyday items.',
+                icon: 'fa-bag-shopping',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=SM+Store+SM+City+Novaliches+San+Bartolome+Quezon+City',
+                atmosphere: {
+                    display: 'Merchandise organized into visual departments (Apparel, Home, Accessories).',
+                    design: 'Wide central aisles with accessible cashier counters on all floors.',
+                    appearance: 'Very clean, brightly lit with spotlights, and fully air-conditioned.'
+                }
+            },
+            {
+                id: 'maklim-merchandise',
+                name: 'Maklim General Merchandise',
+                category: 'General Merchandise',
+                address: 'Lot 21, Goodwill Homes 1, Block 3, Katipunan Ave, San Bartolome, Novaliches, QC',
+                opening: '7:30 AM (Sun 8 AM)',
+                closing: '5:30 PM (Sun 3 PM)',
+                days: 'Mon–Sun',
+                products: 'Household items, hardware goods, plasticware, and everyday home products.',
+                icon: 'fa-boxes-stacked',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Maklim+General+Merchandise+Goodwill+Homes+1+Katipunan+Ave',
+                atmosphere: {
+                    display: 'High-density shelf displays maximizing product availability.',
+                    design: 'Traditional general merchandise layout with guided service counters.',
+                    appearance: 'Practical neighborhood store with complete household stock.'
+                }
+            },
+            {
+                id: 'kingchie-merchandise',
+                name: 'Kingchie General Merchandise',
+                category: 'General Merchandise',
+                address: 'Near Barangay San Bartolome Hall, Novaliches, Quezon City',
+                opening: '7:30 AM',
+                closing: '6:00 PM',
+                days: 'Mon–Sat',
+                products: 'School supplies, party needs, plastic packaging, and home goods.',
+                icon: 'fa-boxes-packing',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Kingchie+General+Merchandise+San+Bartolome+Novaliches',
+                atmosphere: {
+                    display: 'Stacked racks featuring daily home items and supplies.',
+                    design: 'Accessible neighborhood shop layout for fast walk-in buying.',
+                    appearance: 'Neat, practical, and community-focused store.'
+                }
+            },
+            {
+                id: 'maris-flower-shop',
+                name: 'Mari\'s Flower Shop',
+                category: 'General Merchandise',
+                address: 'Pablo Dela Cruz Street, San Bartolome, Novaliches, Quezon City',
+                opening: '7:00 AM',
+                closing: '7:00 PM',
+                days: 'Daily (Mon–Sun)',
+                products: 'Fresh flower arrangements, bouquets, event floral decor, and plants.',
+                icon: 'fa-seedling',
+                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Mari%27s+Flower+Shop+Pablo+Dela+Cruz+Street+San+Bartolome',
+                atmosphere: {
+                    display: 'Vibrant buckets of fresh flowers arranged by color and variety.',
+                    design: 'Open floral arrangement workstation where customers can watch custom bouquets crafted.',
+                    appearance: 'Aromatic, colorful, and naturally beautiful shop space.'
+                }
+            }
+        ];
+
+        let currentActiveCategory = 'All';
+
+        // Initialize App on DOM Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderStoreCards(storesData);
+            renderHoursTable(storesData);
+        });
+
+        // Navigation Tab Switcher
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            const targetNav = document.getElementById(`nav-${pageId}`);
+            if (targetNav) {
+                targetNav.classList.add('active');
+            }
+
+            document.getElementById('mobile-menu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toggle Mobile Navigation Drawer
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Filter Stores by Category
+        function filterByCategory(category) {
+            currentActiveCategory = category;
+
+            document.querySelectorAll('.filter-pill').forEach(btn => {
+                const btnText = btn.textContent.trim();
+                if ((category === 'All' && btnText.includes('All Stores')) ||
+                    (category === 'Café & Food' && btnText.includes('Cafés')) ||
+                    (category === 'Pharmacy' && btnText.includes('Pharmacies')) ||
+                    (category === 'Grocery' && btnText.includes('Grocery')) ||
+                    (category === 'Bakery & Specialty' && btnText.includes('Bakery')) ||
+                    (category === 'General Merchandise' && btnText.includes('Department'))) {
+                    btn.classList.add('active');
+                    btn.classList.remove('bg-white', 'text-gray-700');
+                } else {
+                    btn.classList.remove('active');
+                    btn.classList.add('bg-white', 'text-gray-700');
+                }
+            });
+
+            const filtered = category === 'All' 
+                ? storesData 
+                : storesData.filter(s => s.category === category);
+
+            renderStoreCards(filtered);
+
+            if (!document.getElementById('page-directory').classList.contains('active')) {
+                navigateTo('directory');
+            }
+        }
+
+        // Search Input Filter
+        function handleSearch() {
+            const query = document.getElementById('store-search').value.toLowerCase().trim();
+            const filtered = storesData.filter(store => {
+                const matchesCategory = currentActiveCategory === 'All' || store.category === currentActiveCategory;
+                const matchesQuery = store.name.toLowerCase().includes(query) || 
+                                     store.products.toLowerCase().includes(query) ||
+                                     store.address.toLowerCase().includes(query);
+                return matchesCategory && matchesQuery;
+            });
+            renderStoreCards(filtered);
+        }
+
+        // Render Cards in Store Directory
+        function renderStoreCards(stores) {
+            const grid = document.getElementById('store-grid');
+            const noResults = document.getElementById('no-results');
+
+            if (stores.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+            grid.innerHTML = stores.map(store => `
+                <div class="bg-white rounded-3xl border border-cream-300 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <!-- Store Card Header -->
+                        <div class="h-36 bg-gradient-to-r from-forest-800 to-forest-700 p-5 flex flex-col justify-between text-white relative">
+                            <span class="self-start bg-sand text-forest-900 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full tracking-wider">
+                                ${store.category}
+                            </span>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center text-lg text-cream-100 border border-white/20 shrink-0">
+                                    <i class="fa-solid ${store.icon}"></i>
+                                </div>
+                                <h3 class="font-extrabold text-base sm:text-lg text-cream-50 leading-tight">${store.name}</h3>
+                            </div>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-5 space-y-3 text-xs sm:text-sm">
+                            <div class="flex items-start gap-2 text-gray-600">
+                                <i class="fa-solid fa-clock text-forest-700 mt-1"></i>
+                                <span><strong>Hours:</strong> ${store.opening} – ${store.closing} (${store.days})</span>
+                            </div>
+                            <div class="flex items-start gap-2 text-gray-600">
+                                <i class="fa-solid fa-location-dot text-forest-700 mt-1"></i>
+                                <span class="line-clamp-2"><strong>Location:</strong> ${store.address}</span>
+                            </div>
+                            <div class="bg-cream-100 p-3 rounded-xl text-gray-700 text-xs leading-relaxed border border-cream-200">
+                                <strong>Offers:</strong> ${store.products}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Actions -->
+                    <div class="p-5 pt-0 flex flex-col sm:flex-row gap-2">
+                        <button onclick="openModal('${store.id}')" class="flex-1 bg-forest-700 hover:bg-forest-800 text-white font-bold py-2.5 px-3 rounded-xl text-xs transition text-center">
+                            View Store Details
+                        </button>
+                        <a href="${store.mapUrl}" target="_blank" rel="noopener noreferrer" class="bg-cream-200 hover:bg-cream-300 text-forest-900 font-bold py-2.5 px-3 rounded-xl text-xs transition text-center flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-map-location-dot"></i> Map
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Table in Operating Hours Page
+        function renderHoursTable(stores) {
+            const tbody = document.getElementById('hours-table-body');
+            tbody.innerHTML = stores.map(store => `
+                <tr class="hover:bg-cream-50 transition">
+                    <td class="py-4 px-6 font-bold text-forest-900 flex items-center gap-2">
+                        <i class="fa-solid ${store.icon} text-forest-700"></i> ${store.name}
+                    </td>
+                    <td class="py-4 px-6 text-gray-600">${store.category}</td>
+                    <td class="py-4 px-6 font-medium text-forest-700">${store.opening}</td>
+                    <td class="py-4 px-6 font-medium text-forest-700">${store.closing}</td>
+                    <td class="py-4 px-6 text-gray-600">${store.days}</td>
+                    <td class="py-4 px-6 text-center">
+                        <a href="${store.mapUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-bold bg-cream-200 hover:bg-cream-300 text-forest-900 px-3 py-1.5 rounded-lg transition">
+                            <i class="fa-solid fa-directions"></i> Map
+                        </a>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Open Store Detail Modal
+        function openModal(storeId) {
+            const store = storesData.find(s => s.id === storeId);
+            if (!store) return;
+
+            document.getElementById('modal-category-tag').textContent = store.category;
+            document.getElementById('modal-store-name').textContent = store.name;
+            document.getElementById('modal-address').textContent = store.address;
+            document.getElementById('modal-hours').textContent = `${store.opening} – ${store.closing} (${store.days})`;
+            document.getElementById('modal-products').textContent = store.products;
+            
+            document.getElementById('modal-display').textContent = store.atmosphere.display;
+            document.getElementById('modal-design').textContent = store.atmosphere.design;
+            document.getElementById('modal-appearance').textContent = store.atmosphere.appearance;
+
+            document.getElementById('modal-map-link').href = store.mapUrl;
+
+            document.getElementById('store-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('store-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert("Thank you for your submission! Our team will review the store details and update the San Bartolome directory.");
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
